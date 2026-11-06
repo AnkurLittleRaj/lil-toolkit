@@ -12,14 +12,14 @@ No paid hosting service is needed. The workflow uses `pages:write` and OIDC only
 
 1. Bump the workspace version and all four package versions together. Update wrapper core dependency versions too.
 2. Run `npm install --package-lock-only`, `npm run check`, `npm run release:check`, and `npm run pack`.
-3. Commit, then create a matching `v0.1.0` tag (or the new version).
+3. Commit, then create a matching `v0.1.1` tag (or the new version).
 4. `Publish GitHub packages` validates and publishes the core before its wrappers.
 
 The tag must match the version. Manual workflow dispatch must select the version tag, not `main`. A failed partial release may leave immutable versions published; inspect registries before retrying and bump the version when required. The workflow never unpublishes a version.
 
 ### GitHub Packages
 
-Publishing uses the repository `GITHUB_TOKEN`; no personal token needs to be stored. On the first publish GitHub creates **private** packages by default. Open each package’s settings and change visibility to **Public**. The `--access public` npm flag alone does not guarantee GitHub visibility.
+Publishing uses the repository `GITHUB_TOKEN`; no personal token needs to be stored. All four 0.1.1 packages have been published and verified **Public** in their settings. Verify visibility when introducing a new package rather than assuming that the npm `--access public` flag determines GitHub visibility.
 
 Consumers of the GitHub npm registry must authenticate with `read:packages`, even when a package is public. Keep credentials in a user-level npm config or an environment secret; never commit them.
 

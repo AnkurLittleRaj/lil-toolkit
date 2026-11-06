@@ -35,3 +35,13 @@ Remaining: verify remote CI and Pages, publish version 0.1.0 to registries, fini
 - Updated README, package READMEs, Storybook, release guidance and zeroheight installation documentation for GitHub-only distribution.
 - Added registry mapping and GitHub authentication steps for consumers.
 - Completed zeroheight welcome, principles, installation, color, typography, spacing, tokens, component and SaaS-pattern guidance.
+
+## Checkpoint 4
+
+- Dedicated Storybook stories, controls, variants and API docs cover all 20 implemented components. Build-time catalog checks prevent missing stories or docs.
+- All four builds, ten token/package checks and 34 browser checks pass. GitHub validation and Storybook deployment passed for c0b7324.
+- GitHub release 0.1.1 published all four packages successfully; each package settings page confirms public visibility. Release workflow: https://github.com/AnkurLittleRaj/lil-toolkit/actions/runs/42259714705.
+- The 0.1.0 workflow stopped before uploading packages because npm interpreted a relative package path as a Git URL. Fixed paths without moving its tag; release notes identify 0.1.1 as its replacement.
+- Public zeroheight guide verified at https://zeroheight.com/75c403f45 with live Storybook embeds and GitHub-only installation guidance.
+- Imported all 109 tokens into one zeroheight token set. Generated a second-editor-draft compatibility file at tokens/zeroheight.json, while retaining structured dimensions for code.
+- Storybook accessibility panel runs on demand; Playwright owns automated axe checks to avoid overlapping scans.

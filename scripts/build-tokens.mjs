@@ -52,6 +52,26 @@ for (const [name, t] of Object.entries(typography))
     lineHeight: t.line / t.size,
     letterSpacing: { value: 0, unit: "px" },
   });
+// zeroheight imports second editor draft dimensions as strings.
+const zeroheight = JSON.parse(JSON.stringify(dtcg));
+function legacyDimensions(value) {
+  if (!value || typeof value !== "object") return;
+  for (const [key, child] of Object.entries(value)) {
+    if (
+      child &&
+      typeof child === "object" &&
+      "unit" in child &&
+      "value" in child
+    )
+      value[key] = `${child.value}${child.unit}`;
+    else legacyDimensions(child);
+  }
+}
+legacyDimensions(zeroheight);
+await fs.writeFile(
+  "tokens/zeroheight.json",
+  JSON.stringify(zeroheight, null, 2) + "\n",
+);
 await fs.writeFile("packages/core/src/tokens.css", css);
 await fs.writeFile("tokens/tokens.json", JSON.stringify(dtcg, null, 2) + "\n");
 await fs.writeFile(

@@ -22,7 +22,8 @@ const preview: Preview = {
       },
     },
   },
-  initialGlobals: { theme: "light" },
+  // Browser CI owns automated axe runs; the panel remains available on demand.
+  initialGlobals: { theme: "light", a11y: { manual: true } },
   decorators: [
     (story, context) => {
       document.documentElement.dataset.lilTheme = context.globals.theme;

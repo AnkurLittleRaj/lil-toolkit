@@ -15,7 +15,9 @@ Create a styleguide named **Little Design System**, with **By Ankur** on its cov
 5. Getting started — JavaScript, React, Angular and Vue
 6. Contributing and releases
 
-Content is in `welcome.md`, `foundations.md`, `components.md` and the repository README. Keep a single token set by uploading `tokens/tokens.json`; its named light/dark groups contain both themes. This is not zeroheight Enterprise multi-theme support.
+Public guide: https://zeroheight.com/75c403f45
+
+Content is in `welcome.md`, `foundations.md`, `components.md` and the repository README. Keep a single token set by uploading `tokens/zeroheight.json`; its named light/dark groups contain both themes. The import file uses the second editor draft dimension format accepted by zeroheight; `tokens/tokens.json` retains structured dimensions for code. This is not zeroheight Enterprise multi-theme support.
 
 All four code packages are distributed only through GitHub Packages, not npmjs.org. Installation requires `@ankurlittleraj:registry=https://npm.pkg.github.com` in the consumer's `.npmrc` and GitHub authentication with `read:packages`. npm is the CLI, not the publication destination. The release workflow uses GITHUB_TOKEN and does not use an npmjs.org credential.
 

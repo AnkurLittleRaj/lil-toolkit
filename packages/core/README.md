@@ -39,7 +39,19 @@ Build order is tokens → Stencil → React → Vue → Angular. Framework proxi
 
 ## Plain JavaScript
 
-After a package release:
+Packages are published **only to GitHub Packages**, not npmjs.org. npm is still the package-manager CLI. Before installing any framework package, add this scope mapping to your application's `.npmrc`:
+
+```ini
+@ankurlittleraj:registry=https://npm.pkg.github.com
+```
+
+Authenticate to GitHub Packages with a GitHub personal access token (classic) that has `read:packages`. Keep the credential in your user-level npm config, not the repository:
+
+```sh
+npm login --scope=@ankurlittleraj --auth-type=legacy --registry=https://npm.pkg.github.com
+```
+
+Then install the released package:
 
 ```sh
 npm install @ankurlittleraj/lil-toolkit
@@ -143,10 +155,10 @@ Keyboard support, native form participation, dialog focus containment, reduced m
 
 - Every pull request builds the four packages, checks tokens, builds Storybook and runs browser tests.
 - `main` deploys static Storybook to GitHub Pages after validation.
-- A `v<version>` tag publishes to GitHub Packages; npm publishing is enabled after account setup.
+- A `v<version>` tag publishes the four packages only to GitHub Packages.
 - GitHub workflow artifacts include all four `.tgz` packages.
 - [Zeroheight setup](docs/zeroheight/README.md) uses its Free plan, one styleguide and one token set.
 
-GitHub Packages initially publishes packages privately even for public source repositories. Change each package visibility to Public after its first publish. Public npm installation does not require a GitHub token; installing from GitHub Packages does.
+GitHub Packages initially publishes packages privately even for public source repositories. Change each package visibility to Public after its first publish. Installing from GitHub Packages requires authentication even for public packages. No npmjs.org publishing job or credential is used.
 
 MIT · Copyright 2026 Ankur Raj.

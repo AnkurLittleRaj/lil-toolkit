@@ -21,7 +21,6 @@
     "pack": "node scripts/pack.mjs",
     "release:check": "node scripts/release.mjs check",
     "release:github": "node scripts/release.mjs github",
-    "release:npm": "node scripts/release.mjs npm",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

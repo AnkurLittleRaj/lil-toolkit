@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 const mode = process.argv[2];
+if (!["check", "github"].includes(mode))
+  throw Error("Only GitHub Packages publishing is enabled.");
 const root = JSON.parse(await fs.readFile("package.json", "utf8"));
 const version = root.version;
 const tag = process.env.GITHUB_REF_NAME;
@@ -15,22 +17,11 @@ for (const folder of packages) {
   if (pkg.license !== "MIT")
     throw Error(`${pkg.name}: expected approved MIT license`);
   if (mode === "check") continue;
-  const registry =
-    mode === "github"
-      ? "https://npm.pkg.github.com"
-      : "https://registry.npmjs.org";
+  const registry = "https://npm.pkg.github.com";
   // Registry is selected explicitly. No credential is written into the repository.
   execFileSync(
     "npm",
-    [
-      "publish",
-      path,
-      "--access",
-      "public",
-      "--registry",
-      registry,
-      ...(mode === "npm" ? ["--provenance"] : []),
-    ],
+    ["publish", path, "--access", "public", "--registry", registry],
     { stdio: "inherit" },
   );
 }

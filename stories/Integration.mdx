@@ -13,7 +13,18 @@ Install the core package for plain JavaScript or choose the generated binding fo
 | `@ankurlittleraj/lil-toolkit-vue`     | Vue 3.4.38 and later within Vue 3                         |
 | `@ankurlittleraj/lil-toolkit-angular` | Angular 22, standalone components                         |
 
-All packages are intended for public npm distribution. A registry release must exist before these installation commands work.
+All four packages are distributed only through **GitHub Packages**. They are not published to npmjs.org. npm remains the package-manager CLI. A registry release must exist before installation works.
+
+## Registry setup
+
+Add `@ankurlittleraj:registry=https://npm.pkg.github.com` to your application's `.npmrc`. Authenticate with a GitHub personal access token (classic) with `read:packages`, using:
+
+```sh
+npm login --scope=@ankurlittleraj --auth-type=legacy --registry=https://npm.pkg.github.com
+npm install @ankurlittleraj/lil-toolkit
+```
+
+The same setup applies to React, Angular and Vue packages. Never commit an authentication token. GitHub authentication is required even for public packages.
 
 ## Plain JavaScript
 
@@ -34,6 +45,6 @@ Import the core tokens globally once. Inter is optional and self-hosted; no font
 
 ## Development and releases
 
-Node 24, npm workspaces, Stencil output targets and Storybook are the implementation tools. GitHub Actions validates packages and deploys Storybook to GitHub Pages. Version tags trigger package releases to GitHub Packages and, after account authorization, npm. Zeroheight Free hosts editorial guidelines and embeds these stories.
+Node 24, npm workspaces, Stencil output targets and Storybook are the implementation tools. GitHub Actions validates packages and deploys Storybook to GitHub Pages. Version tags publish all four packages exclusively to GitHub Packages using the repository's built-in GITHUB_TOKEN. No npmjs.org publishing credential is used. Zeroheight Free hosts editorial guidelines and embeds these stories.
 
 See the source repository for license, contribution and release instructions.

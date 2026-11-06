@@ -19,3 +19,5 @@ A personal, adaptable design system for responsive web applications. Start with 
 Use Figma for design and composition, Storybook for live behavior and component APIs, GitHub for implementation and releases, and this guide for usage decisions.
 
 The toolkit is MIT licensed. You can use, modify and distribute it while preserving the copyright notice.
+
+The JavaScript, React, Angular and Vue packages are distributed exclusively through GitHub Packages. Configure the GitHub registry and authenticate before installing; they are not published to npmjs.org.

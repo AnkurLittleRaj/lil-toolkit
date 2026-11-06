@@ -1,4 +1,4 @@
-name: Publish public packages
+name: Publish GitHub packages
 on:
   push:
     tags: ["v*"]
@@ -48,23 +48,3 @@ jobs:
       - run: npm run release:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  npm:
-    needs: validate
-    if: vars.NPM_PUBLISH_ENABLED == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-          registry-url: https://registry.npmjs.org
-      - run: npm ci
-      - run: npm run build
-      - run: npm run release:npm
-        env:
-          # Optional bootstrap token; after trusted publisher setup, OIDC needs no token.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

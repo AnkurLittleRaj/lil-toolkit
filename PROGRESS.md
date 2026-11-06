@@ -1,5 +1,7 @@
 # Build progress
 
+**Current publication policy: GitHub Packages only.** No npmjs.org package was published. The npm attempt was rejected, and the owner then canceled npm publishing. npm remains the build/install CLI. Historical references to dual-registry setup below are superseded by this policy.
+
 ## Checkpoint 1 — 6 November 2026
 
 - Public repository created: `AnkurLittleRaj/lil-toolkit`.
@@ -25,3 +27,11 @@ Remaining: browser behavior/accessibility tests and fixes, packaged consumer che
 - zeroheight styleguide created with Inter, indigo-violet branding and “By Ankur” cover content.
 
 Remaining: verify remote CI and Pages, publish version 0.1.0 to registries, finish zeroheight pages/embeds and public sharing.
+
+## Checkpoint 3
+
+- Removed the npmjs.org publishing job, command, credentials and account-setup instructions at the owner's request.
+- All package publishConfig entries now explicitly target https://npm.pkg.github.com.
+- Updated README, package READMEs, Storybook, release guidance and zeroheight installation documentation for GitHub-only distribution.
+- Added registry mapping and GitHub authentication steps for consumers.
+- Completed zeroheight welcome, principles, installation, color, typography, spacing, tokens, component and SaaS-pattern guidance.

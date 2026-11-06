@@ -4,11 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "@ankurlittleraj/lil-toolkit"
-  ],
-  "assets": [
-    "README.md",
-    "LICENSE"
-  ]
+  "allowedNonPeerDependencies": ["@ankurlittleraj/lil-toolkit"],
+  "assets": ["README.md", "LICENSE"]
 }

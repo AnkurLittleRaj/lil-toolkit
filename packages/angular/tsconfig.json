@@ -7,10 +7,7 @@
     "emitDecoratorMetadata": true,
     "verbatimModuleSyntax": false
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "angularCompilerOptions": {
     "compilationMode": "partial",
     "strictTemplates": true,

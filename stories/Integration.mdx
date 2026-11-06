@@ -1,0 +1,39 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Integration/Getting started" />
+
+# One core, four packages
+
+Install the core package for plain JavaScript or choose the generated binding for your framework. The bindings depend on the same core; there are no independent visual implementations to drift apart.
+
+| Package                               | Support                                                   |
+| ------------------------------------- | --------------------------------------------------------- |
+| `@ankurlittleraj/lil-toolkit`         | Browser custom elements, native JavaScript and TypeScript |
+| `@ankurlittleraj/lil-toolkit-react`   | React 18 and 19                                           |
+| `@ankurlittleraj/lil-toolkit-vue`     | Vue 3.4.38 and later within Vue 3                         |
+| `@ankurlittleraj/lil-toolkit-angular` | Angular 22, standalone components                         |
+
+All packages are intended for public npm distribution. A registry release must exist before these installation commands work.
+
+## Plain JavaScript
+
+```js
+import "@ankurlittleraj/lil-toolkit/tokens.css";
+import "@ankurlittleraj/lil-toolkit/fonts.css";
+import { defineCustomElements } from "@ankurlittleraj/lil-toolkit/register";
+defineCustomElements();
+```
+
+Use `lil-button` and `lil-input` directly in HTML. Set object and array data as element properties; listen to the documented custom events with `addEventListener`.
+
+## Frameworks
+
+React wrappers expose typed callbacks such as `onLilInput`. Vue wrappers support `v-model` for value and checked state. Angular applications import the standalone components plus `TextValueAccessor` or `BooleanValueAccessor` when using forms. Detailed copyable examples are in the repository README.
+
+Import the core tokens globally once. Inter is optional and self-hosted; no font CDN is needed. Set `data-lil-theme` on a parent to choose Light or Dark. Shadow DOM styling reads inherited semantic tokens and exposes selected parts.
+
+## Development and releases
+
+Node 24, npm workspaces, Stencil output targets and Storybook are the implementation tools. GitHub Actions validates packages and deploys Storybook to GitHub Pages. Version tags trigger package releases to GitHub Packages and, after account authorization, npm. Zeroheight Free hosts editorial guidelines and embeds these stories.
+
+See the source repository for license, contribution and release instructions.

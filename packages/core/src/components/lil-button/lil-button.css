@@ -1,17 +1,80 @@
-@import '../../shared.css';
-:host { display: inline-block; }
-button { width:100%; display:inline-flex; align-items:center; justify-content:center; gap:var(--lil-space-8); min-height:44px; padding:10px 16px; border:1px solid transparent; border-radius:var(--lil-radius-6); background:var(--lil-accent-solid); color:var(--lil-text-on-accent); font-weight:500; line-height:22px; transition:background 150ms; white-space:nowrap; }
-button:hover:not(:disabled) { background:var(--lil-accent-hover); }
-button:active:not(:disabled) { background:var(--lil-accent-pressed); }
-:host([variant=secondary]) button { background:var(--lil-surface-panel); border-color:var(--lil-border-default); color:var(--lil-text-primary); }
-:host([variant=ghost]) button { background:transparent; color:var(--lil-text-primary); }
-:host([variant=danger]) button { background:var(--lil-danger-surface); color:var(--lil-danger-text); }
-:host([variant=secondary]) button:hover, :host([variant=ghost]) button:hover { background:var(--lil-surface-hover); }
-:host([variant=danger]) button:hover { border-color:var(--lil-danger-text); background:var(--lil-danger-surface); }
-:host([size=small]) button { min-height:36px; padding:6px 12px; }
-button:disabled { opacity:.4; }
-:host([loading]) button { opacity:1; cursor:progress; }
-.spinner { width:16px; height:16px; border:2px solid currentColor; border-right-color:transparent; border-radius:50%; animation:spin .75s linear infinite; }
-.spinner[hidden] { display:none; }
-@keyframes spin { to { transform:rotate(360deg); } }
-@media(max-width:639px) { :host([size=small]) button { min-height:44px; } }
+@import "../../shared.css";
+:host {
+  display: inline-block;
+}
+button {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--lil-space-8);
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--lil-radius-6);
+  background: var(--lil-accent-solid);
+  color: var(--lil-text-on-accent);
+  font-weight: 500;
+  line-height: 22px;
+  transition: background 150ms;
+  white-space: nowrap;
+}
+button:hover:not(:disabled) {
+  background: var(--lil-accent-hover);
+}
+button:active:not(:disabled) {
+  background: var(--lil-accent-pressed);
+}
+:host([variant="secondary"]) button {
+  background: var(--lil-surface-panel);
+  border-color: var(--lil-border-default);
+  color: var(--lil-text-primary);
+}
+:host([variant="ghost"]) button {
+  background: transparent;
+  color: var(--lil-text-primary);
+}
+:host([variant="danger"]) button {
+  background: var(--lil-danger-surface);
+  color: var(--lil-danger-text);
+}
+:host([variant="secondary"]) button:hover,
+:host([variant="ghost"]) button:hover {
+  background: var(--lil-surface-hover);
+}
+:host([variant="danger"]) button:hover {
+  border-color: var(--lil-danger-text);
+  background: var(--lil-danger-surface);
+}
+:host([size="small"]) button {
+  min-height: 36px;
+  padding: 6px 12px;
+}
+button:disabled {
+  opacity: 0.4;
+}
+:host([loading]) button {
+  opacity: 1;
+  cursor: progress;
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+.spinner[hidden] {
+  display: none;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 639px) {
+  :host([size="small"]) button {
+    min-height: 44px;
+  }
+}

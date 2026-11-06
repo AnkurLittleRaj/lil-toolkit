@@ -1,6 +1,26 @@
-@import '../../shared.css';
-:host { display:inline-block; }
-span { display:inline-flex; padding:3px 8px; border-radius:var(--lil-radius-4); font-size:12px; line-height:18px; white-space:nowrap; background:var(--lil-surface-subtle); color:var(--lil-text-secondary); }
-:host([status=success]) span { background:var(--lil-success-surface); color:var(--lil-success-text); }
-:host([status=warning]) span { background:var(--lil-warning-surface); color:var(--lil-warning-text); }
-:host([status=danger]) span { background:var(--lil-danger-surface); color:var(--lil-danger-text); }
+@import "../../shared.css";
+:host {
+  display: inline-block;
+}
+span {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: var(--lil-radius-4);
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  background: var(--lil-surface-subtle);
+  color: var(--lil-text-secondary);
+}
+:host([status="success"]) span {
+  background: var(--lil-success-surface);
+  color: var(--lil-success-text);
+}
+:host([status="warning"]) span {
+  background: var(--lil-warning-surface);
+  color: var(--lil-warning-text);
+}
+:host([status="danger"]) span {
+  background: var(--lil-danger-surface);
+  color: var(--lil-danger-text);
+}

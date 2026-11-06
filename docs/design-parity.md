@@ -10,18 +10,18 @@ The Figma file itself still has known unfinished work: mobile input width fixes,
 
 ## Component mapping
 
-| Figma family | Code |
-| --- | --- |
-| Button / Primary, Secondary, Ghost, Danger | `lil-button` variants |
-| Input | `lil-input` |
-| Checkbox / Switch | `lil-checkbox` / `lil-switch` |
-| Navigation item / Sidebar | `lil-nav-item` / `lil-sidebar` |
-| Filter chip / Tabs | `lil-filter-chip` / `lil-tabs` |
-| Badge / Toast / Data state | `lil-badge` / `lil-toast` / `lil-data-state` |
-| Metric card / Revenue chart / Plan chart | `lil-metric-card` / `lil-chart` / `lil-plan-chart` |
-| Customer row | Responsive `lil-customer-table` |
-| Activity card | `lil-activity-card` |
-| Dropdown menu / Dialog | `lil-menu` / `lil-dialog` |
-| Outline icons | `lil-icon` |
+| Figma family                               | Code                                               |
+| ------------------------------------------ | -------------------------------------------------- |
+| Button / Primary, Secondary, Ghost, Danger | `lil-button` variants                              |
+| Input                                      | `lil-input`                                        |
+| Checkbox / Switch                          | `lil-checkbox` / `lil-switch`                      |
+| Navigation item / Sidebar                  | `lil-nav-item` / `lil-sidebar`                     |
+| Filter chip / Tabs                         | `lil-filter-chip` / `lil-tabs`                     |
+| Badge / Toast / Data state                 | `lil-badge` / `lil-toast` / `lil-data-state`       |
+| Metric card / Revenue chart / Plan chart   | `lil-metric-card` / `lil-chart` / `lil-plan-chart` |
+| Customer row                               | Responsive `lil-customer-table`                    |
+| Activity card                              | `lil-activity-card`                                |
+| Dropdown menu / Dialog                     | `lil-menu` / `lil-dialog`                          |
+| Outline icons                              | `lil-icon`                                         |
 
 `lil-card` adds a reusable surface container. Desktop and mobile use the same components and CSS breakpoints, rather than separate implementations.

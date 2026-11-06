@@ -1,10 +1,149 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-const meta:Meta={title:'Patterns/SaaS surfaces'};export default meta;type Story=StoryObj;
-export const Metrics:Story={render:()=>html`<div class="row"><lil-metric-card label="Total revenue" value="$48,290" trend="↗ 12.8% vs. last month" sentiment="positive"></lil-metric-card><lil-metric-card label="Active users" value="2,420" trend="↗ 8.2% vs. last month" sentiment="positive"></lil-metric-card></div>`};
-export const Charts:Story={render:()=>html`<div class="stack"><lil-chart .data=${[{label:'Jun',value:22000},{label:'Jul',value:29000},{label:'Aug',value:25000},{label:'Sep',value:34000},{label:'Oct',value:38000},{label:'Nov',value:48000}]} summary="Nov $48k · Oct $38k · +26.3%"></lil-chart><lil-plan-chart .data=${[{label:'Pro',value:68},{label:'Starter',value:24},{label:'Business',value:8}]}></lil-plan-chart></div>`};
-export const Customers:Story={render:()=>html`<lil-card heading="Recent customers"><lil-customer-table .customers=${[{id:'olivia',name:'Olivia Martin',email:'olivia@example.com',plan:'Pro monthly',status:'Active',amount:'$29.00',joined:'Today, 10:42'},{id:'alex',name:'Alex Chen',email:'alex@example.com',plan:'Starter',status:'Trial',amount:'$9.00',joined:'Yesterday'}]}></lil-customer-table></lil-card>`};
-export const Activity:Story={render:()=>html`<div class="control-width"><lil-activity-card .items=${[{title:'New Pro subscription',description:'Olivia Martin · 2 minutes ago',icon:'plus'},{title:'Payment received',description:'+$29.00 · 18 minutes ago',icon:'card'},{title:'Team invitation accepted',description:'Alex Chen · 1 hour ago',icon:'users'}]}></lil-activity-card></div>`};
-export const Status:Story={render:()=>html`<div class="stack"><div class="row"><lil-badge>Draft</lil-badge><lil-badge status="success">Active</lil-badge><lil-badge status="warning">Trial</lil-badge><lil-badge status="danger">Past due</lil-badge></div><lil-toast open heading="Changes saved" message="Your preferences are up to date."></lil-toast></div>`};
-export const DataStates:Story={render:()=>html`<div class="row"><lil-data-state state="empty"></lil-data-state><lil-data-state state="loading"></lil-data-state><lil-data-state state="error"></lil-data-state></div>`};
-export const Dialog:Story={render:()=>html`<lil-button @click=${(e:Event)=>{const container=(e.currentTarget as HTMLElement).parentElement!;container.querySelector('lil-dialog')!.open=true;}}>Invite teammate</lil-button><lil-dialog heading="Invite a teammate" description="Give someone access to your workspace."><lil-input label="Email address" type="email" placeholder="teammate@example.com" help="They’ll receive an invitation by email."></lil-input><lil-button slot="actions" variant="secondary" @click=${(e:Event)=>(e.target as HTMLElement).closest('lil-dialog')!.open=false}>Cancel</lil-button><lil-button slot="actions" @click=${(e:Event)=>(e.target as HTMLElement).closest('lil-dialog')!.open=false}>Send invitation</lil-button></lil-dialog>`};
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+const meta: Meta = { title: "Patterns/SaaS surfaces" };
+export default meta;
+type Story = StoryObj;
+export const Metrics: Story = {
+  render: () =>
+    html`<div class="row">
+      <lil-metric-card
+        label="Total revenue"
+        value="$48,290"
+        trend="↗ 12.8% vs. last month"
+        sentiment="positive"
+      ></lil-metric-card
+      ><lil-metric-card
+        label="Active users"
+        value="2,420"
+        trend="↗ 8.2% vs. last month"
+        sentiment="positive"
+      ></lil-metric-card>
+    </div>`,
+};
+export const Charts: Story = {
+  render: () =>
+    html`<div class="stack">
+      <lil-chart
+        .data=${[
+          { label: "Jun", value: 22000 },
+          { label: "Jul", value: 29000 },
+          { label: "Aug", value: 25000 },
+          { label: "Sep", value: 34000 },
+          { label: "Oct", value: 38000 },
+          { label: "Nov", value: 48000 },
+        ]}
+        summary="Nov $48k · Oct $38k · +26.3%"
+      ></lil-chart
+      ><lil-plan-chart
+        .data=${[
+          { label: "Pro", value: 68 },
+          { label: "Starter", value: 24 },
+          { label: "Business", value: 8 },
+        ]}
+      ></lil-plan-chart>
+    </div>`,
+};
+export const Customers: Story = {
+  render: () =>
+    html`<lil-card heading="Recent customers"
+      ><lil-customer-table
+        .customers=${[
+          {
+            id: "olivia",
+            name: "Olivia Martin",
+            email: "olivia@example.com",
+            plan: "Pro monthly",
+            status: "Active",
+            amount: "$29.00",
+            joined: "Today, 10:42",
+          },
+          {
+            id: "alex",
+            name: "Alex Chen",
+            email: "alex@example.com",
+            plan: "Starter",
+            status: "Trial",
+            amount: "$9.00",
+            joined: "Yesterday",
+          },
+        ]}
+      ></lil-customer-table
+    ></lil-card>`,
+};
+export const Activity: Story = {
+  render: () =>
+    html`<div class="control-width">
+      <lil-activity-card
+        .items=${[
+          {
+            title: "New Pro subscription",
+            description: "Olivia Martin · 2 minutes ago",
+            icon: "plus",
+          },
+          {
+            title: "Payment received",
+            description: "+$29.00 · 18 minutes ago",
+            icon: "card",
+          },
+          {
+            title: "Team invitation accepted",
+            description: "Alex Chen · 1 hour ago",
+            icon: "users",
+          },
+        ]}
+      ></lil-activity-card>
+    </div>`,
+};
+export const Status: Story = {
+  render: () =>
+    html`<div class="stack">
+      <div class="row">
+        <lil-badge>Draft</lil-badge
+        ><lil-badge status="success">Active</lil-badge
+        ><lil-badge status="warning">Trial</lil-badge
+        ><lil-badge status="danger">Past due</lil-badge>
+      </div>
+      <lil-toast
+        open
+        heading="Changes saved"
+        message="Your preferences are up to date."
+      ></lil-toast>
+    </div>`,
+};
+export const DataStates: Story = {
+  render: () =>
+    html`<div class="row">
+      <lil-data-state state="empty"></lil-data-state
+      ><lil-data-state state="loading"></lil-data-state
+      ><lil-data-state state="error"></lil-data-state>
+    </div>`,
+};
+export const Dialog: Story = {
+  render: () =>
+    html`<lil-button
+        @click=${(e: Event) => {
+          const container = (e.currentTarget as HTMLElement).parentElement!;
+          container.querySelector("lil-dialog")!.open = true;
+        }}
+        >Invite teammate</lil-button
+      ><lil-dialog
+        heading="Invite a teammate"
+        description="Give someone access to your workspace."
+        ><lil-input
+          label="Email address"
+          type="email"
+          placeholder="teammate@example.com"
+          help="They’ll receive an invitation by email."
+        ></lil-input
+        ><lil-button
+          slot="actions"
+          variant="secondary"
+          @click=${(e: Event) => ((e.target as HTMLElement).closest("lil-dialog")!.open = false)}
+          >Cancel</lil-button
+        ><lil-button
+          slot="actions"
+          @click=${(e: Event) => ((e.target as HTMLElement).closest("lil-dialog")!.open = false)}
+          >Send invitation</lil-button
+        ></lil-dialog
+      >`,
+};

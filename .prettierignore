@@ -1,0 +1,15 @@
+node_modules
+**/dist
+**/generated
+**/loader
+**/fonts
+**/components.d.ts
+**/custom-elements.json
+packages/core/src/tokens.*
+packages/core/src/fonts.css
+storybook-static
+artifacts
+test-results
+playwright-report
+package-lock.json
+tokens/tokens.json

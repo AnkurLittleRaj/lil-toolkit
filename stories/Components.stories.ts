@@ -1,5 +1,58 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-const meta:Meta={title:'Components/Button',component:'lil-button',tags:['autodocs'],argTypes:{variant:{control:'select',options:['primary','secondary','ghost','danger']},size:{control:'select',options:['small','medium']},disabled:{control:'boolean'},loading:{control:'boolean'},label:{control:'text'}},args:{variant:'primary',size:'medium',disabled:false,loading:false,label:'Create project'},render:a=>html`<lil-button variant=${a.variant} size=${a.size} ?disabled=${a.disabled} ?loading=${a.loading}>${a.label}</lil-button>`,parameters:{docs:{description:{component:'Use one primary action per section. Secondary supports it; Ghost is low emphasis. Danger is for destructive actions. Disabled and Loading do not activate.'}}}};
-export default meta;type Story=StoryObj;
-export const Primary:Story={};export const Secondary:Story={args:{variant:'secondary',label:'View details'}};export const Ghost:Story={args:{variant:'ghost',label:'Learn more'}};export const Danger:Story={args:{variant:'danger',label:'Delete project'}};export const Disabled:Story={args:{disabled:true}};export const Loading:Story={args:{loading:true,label:'Creating…'}};export const WithIcon:Story={render:()=>html`<lil-button><lil-icon slot="icon" name="plus"></lil-icon>Create project</lil-button>`};
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+const meta: Meta = {
+  title: "Components/Button",
+  component: "lil-button",
+  tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["primary", "secondary", "ghost", "danger"],
+    },
+    size: { control: "select", options: ["small", "medium"] },
+    disabled: { control: "boolean" },
+    loading: { control: "boolean" },
+    label: { control: "text" },
+  },
+  args: {
+    variant: "primary",
+    size: "medium",
+    disabled: false,
+    loading: false,
+    label: "Create project",
+  },
+  render: (a) =>
+    html`<lil-button
+      variant=${a.variant}
+      size=${a.size}
+      ?disabled=${a.disabled}
+      ?loading=${a.loading}
+      >${a.label}</lil-button
+    >`,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Use one primary action per section. Secondary supports it; Ghost is low emphasis. Danger is for destructive actions. Disabled and Loading do not activate.",
+      },
+    },
+  },
+};
+export default meta;
+type Story = StoryObj;
+export const Primary: Story = {};
+export const Secondary: Story = {
+  args: { variant: "secondary", label: "View details" },
+};
+export const Ghost: Story = { args: { variant: "ghost", label: "Learn more" } };
+export const Danger: Story = {
+  args: { variant: "danger", label: "Delete project" },
+};
+export const Disabled: Story = { args: { disabled: true } };
+export const Loading: Story = { args: { loading: true, label: "Creating…" } };
+export const WithIcon: Story = {
+  render: () =>
+    html`<lil-button
+      ><lil-icon slot="icon" name="plus"></lil-icon>Create project</lil-button
+    >`,
+};

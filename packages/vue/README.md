@@ -8,12 +8,12 @@ A reusable design system for responsive web applications. Built once with Stenci
 
 ## Packages
 
-| Package | Purpose |
-| --- | --- |
-| `@ankurlittleraj/lil-toolkit` | Plain JavaScript/custom elements, tokens, fonts, types and lazy loader |
-| `@ankurlittleraj/lil-toolkit-react` | Generated React bindings with typed props and events |
-| `@ankurlittleraj/lil-toolkit-angular` | Standalone Angular components and form value accessors |
-| `@ankurlittleraj/lil-toolkit-vue` | Generated Vue bindings with `v-model` support |
+| Package                               | Purpose                                                                |
+| ------------------------------------- | ---------------------------------------------------------------------- |
+| `@ankurlittleraj/lil-toolkit`         | Plain JavaScript/custom elements, tokens, fonts, types and lazy loader |
+| `@ankurlittleraj/lil-toolkit-react`   | Generated React bindings with typed props and events                   |
+| `@ankurlittleraj/lil-toolkit-angular` | Standalone Angular components and form value accessors                 |
+| `@ankurlittleraj/lil-toolkit-vue`     | Generated Vue bindings with `v-model` support                          |
 
 See the registry and deployment status in GitHub Actions. Package names in this README describe the intended public distribution; do not infer that a release exists until its publish workflow has passed.
 
@@ -46,9 +46,9 @@ npm install @ankurlittleraj/lil-toolkit
 ```
 
 ```js
-import '@ankurlittleraj/lil-toolkit/fonts.css';
-import '@ankurlittleraj/lil-toolkit/tokens.css';
-import { defineCustomElements } from '@ankurlittleraj/lil-toolkit/register';
+import "@ankurlittleraj/lil-toolkit/fonts.css";
+import "@ankurlittleraj/lil-toolkit/tokens.css";
+import { defineCustomElements } from "@ankurlittleraj/lil-toolkit/register";
 defineCustomElements();
 ```
 
@@ -62,12 +62,20 @@ Use `.value`/property assignment for objects and arrays; HTML attributes represe
 ## React
 
 ```tsx
-import { LilButton, LilInput } from '@ankurlittleraj/lil-toolkit-react';
-import '@ankurlittleraj/lil-toolkit/tokens.css';
-import '@ankurlittleraj/lil-toolkit/fonts.css';
+import { LilButton, LilInput } from "@ankurlittleraj/lil-toolkit-react";
+import "@ankurlittleraj/lil-toolkit/tokens.css";
+import "@ankurlittleraj/lil-toolkit/fonts.css";
 
 export function Account() {
-  return <><LilInput label="Email address" onLilInput={e => console.log(e.detail.value)} /><LilButton>Save changes</LilButton></>;
+  return (
+    <>
+      <LilInput
+        label="Email address"
+        onLilInput={(e) => console.log(e.detail.value)}
+      />
+      <LilButton>Save changes</LilButton>
+    </>
+  );
 }
 ```
 
@@ -75,27 +83,39 @@ export function Account() {
 
 ```vue
 <script setup>
-import { ref } from 'vue';
-import { LilInput, LilButton } from '@ankurlittleraj/lil-toolkit-vue';
-import '@ankurlittleraj/lil-toolkit/tokens.css';
-const email = ref('');
+import { ref } from "vue";
+import { LilInput, LilButton } from "@ankurlittleraj/lil-toolkit-vue";
+import "@ankurlittleraj/lil-toolkit/tokens.css";
+const email = ref("");
 </script>
-<template><LilInput label="Email address" v-model="email" /><LilButton>Save changes</LilButton></template>
+<template>
+  <LilInput label="Email address" v-model="email" /><LilButton
+    >Save changes</LilButton
+  >
+</template>
 ```
 
 ## Angular
 
 ```ts
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { LilInput, LilButton, TextValueAccessor } from '@ankurlittleraj/lil-toolkit-angular';
+import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import {
+  LilInput,
+  LilButton,
+  TextValueAccessor,
+} from "@ankurlittleraj/lil-toolkit-angular";
 
 @Component({
-  selector: 'app-account', standalone: true,
+  selector: "app-account",
+  standalone: true,
   imports: [FormsModule, LilInput, LilButton, TextValueAccessor],
-  template: '<lil-input label="Email address" [(ngModel)]="email" /><lil-button>Save changes</lil-button>'
+  template:
+    '<lil-input label="Email address" [(ngModel)]="email" /><lil-button>Save changes</lil-button>',
 })
-export class Account { email = ''; }
+export class Account {
+  email = "";
+}
 ```
 
 Import the core `tokens.css` and optional `fonts.css` in your global styles. Initial Angular compatibility is v22; React supports v18/19 and Vue supports v3.4.38+ within v3. This is a browser component library; SSR and hydration integrations are not claimed as validated.
@@ -106,7 +126,9 @@ Set `data-lil-theme="light"` or `data-lil-theme="dark"` on `html` or a containin
 
 ```css
 /* Override semantic tokens in your application, rather than component internals. */
-:root { --lil-accent-solid: #6941d9; }
+:root {
+  --lil-accent-solid: #6941d9;
+}
 ```
 
 `tokens/source.json` is the editable source; `npm run tokens` generates CSS and a single DTCG token set containing Light and Dark groups for zeroheight Free. Inter is self-hosted with its SIL OFL notice.

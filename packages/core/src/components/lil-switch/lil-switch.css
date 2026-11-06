@@ -1,8 +1,40 @@
-@import '../../shared.css';
-:host { display:inline-block; }
-button { display:flex; align-items:center; gap:12px; min-height:44px; background:none; border:0; padding:0; color:inherit; text-align:start; }
-.track { flex-shrink:0; width:36px; height:22px; padding:2px; border-radius:999px; background:var(--lil-border-strong); }
-.thumb { display:block; width:18px; height:18px; border-radius:50%; background:#fff; transition:transform 150ms; }
-[aria-checked=true] .track { background:var(--lil-accent-solid); }
-[aria-checked=true] .thumb { transform:translateX(14px); }
-button:disabled { opacity:.4; }
+@import "../../shared.css";
+:host {
+  display: inline-block;
+}
+button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  text-align: start;
+}
+.track {
+  flex-shrink: 0;
+  width: 36px;
+  height: 22px;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--lil-border-strong);
+}
+.thumb {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 150ms;
+}
+[aria-checked="true"] .track {
+  background: var(--lil-accent-solid);
+}
+[aria-checked="true"] .thumb {
+  transform: translateX(14px);
+}
+button:disabled {
+  opacity: 0.4;
+}

@@ -1,3 +1,9 @@
 /* Import tokens.css and fonts.css in the consuming app's root stylesheet. */
-html { font-family: var(--lil-font-family, Inter, system-ui, sans-serif); background: var(--lil-surface-canvas, #fafafc); color: var(--lil-text-primary, #181822); }
-body { margin: 0; }
+html {
+  font-family: var(--lil-font-family, Inter, system-ui, sans-serif);
+  background: var(--lil-surface-canvas, #fafafc);
+  color: var(--lil-text-primary, #181822);
+}
+body {
+  margin: 0;
+}

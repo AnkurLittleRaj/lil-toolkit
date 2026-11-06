@@ -13,3 +13,15 @@
 - zeroheight login completed; styleguide creation in progress.
 
 Remaining: browser behavior/accessibility tests and fixes, packaged consumer checks, Pages deployment, registry authentication and publication, GitHub package visibility, zeroheight content and embeds. No package release or hosted documentation is claimed complete at this checkpoint.
+
+## Checkpoint 2
+
+- All four packages compile; ten token/package checks and fourteen browser tests pass.
+- React and Vue generated bindings verified for model updates in the browser.
+- Both themes checked at 390px and 1280px with automated axe accessibility checks.
+- Angular artifact corrected and all four tarballs checked for runtime files.
+- Public source formatted and package/release documentation added.
+- GitHub Pages configured for Actions deployment.
+- zeroheight styleguide created with Inter, indigo-violet branding and “By Ankur” cover content.
+
+Remaining: verify remote CI and Pages, publish version 0.1.0 to registries, finish zeroheight pages/embeds and public sharing.

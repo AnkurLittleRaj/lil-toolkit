@@ -1,5 +1,21 @@
-@import '../../shared.css';
-:host { display:block; }
-.toast { display:flex; gap:12px; padding:16px; border-radius:8px; background:var(--lil-success-surface); color:var(--lil-success-text); }
-strong { font-weight:500; }
-p { color:var(--lil-text-secondary); font-size:12px; line-height:18px; margin:4px 0 0; }
+@import "../../shared.css";
+:host {
+  display: block;
+}
+.toast {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--lil-success-surface);
+  color: var(--lil-success-text);
+}
+strong {
+  font-weight: 500;
+}
+p {
+  color: var(--lil-text-secondary);
+  font-size: 12px;
+  line-height: 18px;
+  margin: 4px 0 0;
+}

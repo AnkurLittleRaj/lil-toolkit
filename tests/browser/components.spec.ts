@@ -1,11 +1,138 @@
-import { test, expect } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
-const story=(id:string,theme='light')=>`/iframe.html?id=${id}&viewMode=story&globals=theme:${theme}`;
-test('disabled and loading buttons do not activate',async({page})=>{await page.goto(story('components-button--disabled'));await expect(page.getByRole('button',{name:'Create project'})).toBeDisabled();await page.goto(story('components-button--loading'));await expect(page.getByRole('button',{name:'Creating…'})).toBeDisabled();});
-test('form-associated controls submit native FormData',async({page})=>{await page.goto(story('components-forms--form-submission'));await page.getByLabel('Email address').fill('test@example.com');await page.getByLabel('Subscribe to updates').check();await page.getByRole('button',{name:'Submit native form'}).click();await expect(page.locator('output')).toContainText('"email":"test@example.com"');await expect(page.locator('output')).toContainText('"updates":"on"');});
-test('tabs support keyboard navigation and only show the selected panel',async({page})=>{await page.goto(story('components-navigation--tabs'));const tab=page.getByRole('tab',{name:'Profile'});await tab.focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('tab',{name:'Notifications'})).toBeFocused();await expect(page.getByText('Choose the updates you want to receive.')).toBeVisible();await page.keyboard.press('Home');await expect(tab).toHaveAttribute('aria-selected','true');});
-test('menu supports Escape and returns focus to its trigger',async({page})=>{await page.goto(story('components-navigation--menu'));const trigger=page.getByRole('button',{name:'Last 30 days',exact:true});await trigger.click();await expect(page.getByRole('menu')).toBeVisible();await page.keyboard.press('ArrowDown');await page.keyboard.press('Escape');await expect(page.getByRole('menu')).toHaveCount(0);await expect(trigger).toBeFocused();});
-test('dialog contains focus, validates email and closes on Escape',async({page})=>{await page.goto(story('examples-saas--dashboard'));const trigger=page.getByRole('button',{name:'Invite teammate'});await trigger.click();const dialog=page.getByRole('dialog',{name:'Invite a teammate'});await expect(dialog).toBeVisible();await dialog.getByRole('button',{name:'Send invitation'}).click();await expect(dialog).toContainText('Enter a valid email address.');await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await expect(trigger).toBeFocused();});
-test('customer plan filter changes visible records',async({page})=>{await page.goto(story('examples-saas--dashboard'));await page.getByRole('button',{name:'All plans',exact:true}).click();await page.getByRole('menuitem',{name:'Pro',exact:true}).click();await expect(page.getByRole('table')).toContainText('Olivia Martin');await expect(page.getByRole('table')).not.toContainText('Alex Chen');});
-for(const theme of ['light','dark'])for(const width of [390,1280])test(`${theme} ${width}px: dashboard fits and passes axe`,async({page})=>{await page.setViewportSize({width,height:900});await page.goto(story('examples-saas--dashboard',theme));await expect(page.getByRole('heading',{name:'Overview',exact:true})).toBeVisible();await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const result=await new AxeBuilder({page}).include('.demo-shell').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(result.violations).toEqual([]);});
-for(const theme of ['light','dark'])test(`${theme}: mobile settings fields fit and navigation works`,async({page})=>{await page.setViewportSize({width:390,height:844});await page.goto(story('examples-saas--settings',theme));await expect(page.getByRole('heading',{name:'Settings',exact:true})).toBeVisible();await page.getByLabel('First name').fill('Ankur');await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.getByRole('tab',{name:'Notifications'}).click();await expect(page.getByRole('switch',{name:'Billing reminders'})).toBeChecked();await page.getByRole('button',{name:'Open navigation'}).click();await expect(page.getByRole('dialog',{name:'Workspace navigation'})).toBeVisible();await page.getByRole('button',{name:'Overview',exact:true}).click();await expect(page.getByRole('heading',{name:'Overview',exact:true})).toBeVisible();});
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+for (const framework of ["react", "vue"])
+  test(`${framework}: generated bindings deliver model updates`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `/iframe.html?id=integration-framework-bindings--${framework}-bindings&viewMode=story`,
+    );
+    await page
+      .getByLabel(framework === "react" ? "React email" : "Vue email")
+      .fill("bindings@example.com");
+    await expect(page.locator("output")).toHaveText("bindings@example.com");
+  });
+const story = (id: string, theme = "light") =>
+  `/iframe.html?id=${id}&viewMode=story&globals=theme:${theme}`;
+test("disabled and loading buttons do not activate", async ({ page }) => {
+  await page.goto(story("components-button--disabled"));
+  await expect(
+    page.getByRole("button", { name: "Create project" }),
+  ).toBeDisabled();
+  await page.goto(story("components-button--loading"));
+  await expect(page.getByRole("button", { name: "Creating…" })).toBeDisabled();
+});
+test("form-associated controls submit native FormData", async ({ page }) => {
+  await page.goto(story("components-forms--form-submission"));
+  await page.getByLabel("Email address").fill("test@example.com");
+  await page.getByLabel("Subscribe to updates").check();
+  await page.getByRole("button", { name: "Submit native form" }).click();
+  await expect(page.locator("output")).toContainText(
+    '"email":"test@example.com"',
+  );
+  await expect(page.locator("output")).toContainText('"updates":"on"');
+});
+test("tabs support keyboard navigation and only show the selected panel", async ({
+  page,
+}) => {
+  await page.goto(story("components-navigation--tabs"));
+  const tab = page.getByRole("tab", { name: "Profile" });
+  await tab.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("tab", { name: "Notifications" })).toBeFocused();
+  await expect(
+    page.getByText("Choose the updates you want to receive."),
+  ).toBeVisible();
+  await page.keyboard.press("Home");
+  await expect(tab).toHaveAttribute("aria-selected", "true");
+});
+test("menu supports Escape and returns focus to its trigger", async ({
+  page,
+}) => {
+  await page.goto(story("components-navigation--menu"));
+  const trigger = page.getByRole("button", {
+    name: "Last 30 days",
+    exact: true,
+  });
+  await trigger.click();
+  await expect(page.getByRole("menu")).toBeVisible();
+  await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("menu")).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+});
+test("dialog contains focus, validates email and closes on Escape", async ({
+  page,
+}) => {
+  await page.goto(story("examples-saas--dashboard"));
+  const trigger = page.getByRole("button", { name: "Invite teammate" });
+  await trigger.click();
+  const dialog = page.getByRole("dialog", { name: "Invite a teammate" });
+  await expect(dialog).toBeVisible();
+  await page
+    .locator("lil-dialog")
+    .getByRole("button", { name: "Send invitation" })
+    .click();
+  await expect(page.getByText("Enter a valid email address.")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(trigger).toBeFocused();
+});
+test("customer plan filter changes visible records", async ({ page }) => {
+  await page.goto(story("examples-saas--dashboard"));
+  await page.getByRole("button", { name: "All plans", exact: true }).click();
+  await page.getByRole("menuitem", { name: "Pro", exact: true }).click();
+  await expect(page.getByRole("table")).toContainText("Olivia Martin");
+  await expect(page.getByRole("table")).not.toContainText("Alex Chen");
+});
+for (const theme of ["light", "dark"])
+  for (const width of [390, 1280])
+    test(`${theme} ${width}px: dashboard fits and passes axe`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(story("examples-saas--dashboard", theme));
+      await expect(
+        page.getByRole("heading", { name: "Overview", exact: true }),
+      ).toBeVisible();
+      await expect
+        .poll(() =>
+          page.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth,
+          ),
+        )
+        .toBe(true);
+      const result = await new AxeBuilder({ page })
+        .include(".demo-shell")
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze();
+      expect(result.violations).toEqual([]);
+    });
+for (const theme of ["light", "dark"])
+  test(`${theme}: mobile settings fields fit and navigation works`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(story("examples-saas--settings", theme));
+    await expect(
+      page.getByRole("heading", { name: "Settings", exact: true }),
+    ).toBeVisible();
+    await page.getByLabel("First name").fill("Ankur");
+    await expect
+      .poll(() =>
+        page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      )
+      .toBe(true);
+    await page.getByRole("tab", { name: "Notifications" }).click();
+    await expect(
+      page.getByRole("switch", { name: "Billing reminders" }),
+    ).toBeChecked();
+    await page.getByRole("button", { name: "Open navigation" }).click();
+    await expect(
+      page.getByRole("dialog", { name: "Workspace navigation" }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Overview", exact: true }).click();
+    await expect(
+      page.getByRole("heading", { name: "Overview", exact: true }),
+    ).toBeVisible();
+  });

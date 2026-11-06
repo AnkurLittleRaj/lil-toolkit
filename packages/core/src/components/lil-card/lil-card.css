@@ -1,5 +1,21 @@
-@import '../../shared.css';
-:host { display:block; min-width:0; }
-section { background:var(--lil-surface-panel); border:1px solid var(--lil-border-default); border-radius:var(--lil-radius-8); padding:var(--lil-card-padding,24px); }
-h3 { font-size:18px; line-height:28px; font-weight:600; margin:0 0 16px; }
-p { color:var(--lil-text-secondary); margin:0 0 24px; }
+@import "../../shared.css";
+:host {
+  display: block;
+  min-width: 0;
+}
+section {
+  background: var(--lil-surface-panel);
+  border: 1px solid var(--lil-border-default);
+  border-radius: var(--lil-radius-8);
+  padding: var(--lil-card-padding, 24px);
+}
+h3 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+p {
+  color: var(--lil-text-secondary);
+  margin: 0 0 24px;
+}

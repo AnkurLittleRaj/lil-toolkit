@@ -12,7 +12,7 @@
   },
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
-    "build": "npm run tokens && npm run build -w @ankurlittleraj/lil-toolkit && node scripts/finalize-bindings.mjs && npm run build -w @ankurlittleraj/lil-toolkit-react && npm run build -w @ankurlittleraj/lil-toolkit-vue && npm run build -w @ankurlittleraj/lil-toolkit-angular",
+    "build": "npm run tokens && npm run build -w @ankurlittleraj/lil-toolkit && node scripts/finalize-bindings.mjs && npm run build -w @ankurlittleraj/lil-toolkit-react && npm run build -w @ankurlittleraj/lil-toolkit-vue && npm run build -w @ankurlittleraj/lil-toolkit-angular && node scripts/finalize-angular.mjs",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build -o storybook-static",
     "test": "node --test tests/*.test.mjs",
@@ -21,7 +21,9 @@
     "pack": "node scripts/pack.mjs",
     "release:check": "node scripts/release.mjs check",
     "release:github": "node scripts/release.mjs github",
-    "release:npm": "node scripts/release.mjs npm"
+    "release:npm": "node scripts/release.mjs npm",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@angular/common": "22.2.4",
@@ -45,6 +47,7 @@
     "@types/react-dom": "19.3.0",
     "lit": "3.3.3",
     "ng-packagr": "22.2.6",
+    "prettier": "^3.9.10",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "rxjs": "7.8.2",

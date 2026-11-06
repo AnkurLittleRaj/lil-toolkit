@@ -1,7 +1,7 @@
 name: Publish public packages
 on:
   push:
-    tags: ['v*']
+    tags: ["v*"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,7 +42,7 @@ jobs:
           node-version: 24
           cache: npm
           registry-url: https://npm.pkg.github.com
-          scope: '@ankurlittleraj'
+          scope: "@ankurlittleraj"
       - run: npm ci
       - run: npm run build
       - run: npm run release:github

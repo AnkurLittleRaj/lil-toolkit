@@ -1,2 +1,4 @@
-@import '../../shared.css';
-:host { display:block; }
+@import "../../shared.css";
+:host {
+  display: block;
+}

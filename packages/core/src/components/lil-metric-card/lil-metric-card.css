@@ -1,9 +1,45 @@
-@import '../../shared.css';
-:host { display:block; min-width:0; height:100%; }
-.metric { height:100%; padding:24px; border:1px solid var(--lil-border-default); border-radius:var(--lil-radius-8); background:var(--lil-surface-panel); display:flex; flex-direction:column; gap:12px; }
-.label { color:var(--lil-text-secondary); }
-.value { font-size:30px; line-height:38px; font-weight:600; letter-spacing:-.5px; overflow-wrap:anywhere; }
-.trend { font-size:12px; line-height:18px; color:var(--lil-text-secondary); }
-:host([sentiment=positive]) .trend { color:var(--lil-success-text); }
-:host([sentiment=negative]) .trend { color:var(--lil-danger-text); }
-@media(max-width:639px) { .metric { padding:16px; } .value { font-size:28px; } }
+@import "../../shared.css";
+:host {
+  display: block;
+  min-width: 0;
+  height: 100%;
+}
+.metric {
+  height: 100%;
+  padding: 24px;
+  border: 1px solid var(--lil-border-default);
+  border-radius: var(--lil-radius-8);
+  background: var(--lil-surface-panel);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.label {
+  color: var(--lil-text-secondary);
+}
+.value {
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  overflow-wrap: anywhere;
+}
+.trend {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--lil-text-secondary);
+}
+:host([sentiment="positive"]) .trend {
+  color: var(--lil-success-text);
+}
+:host([sentiment="negative"]) .trend {
+  color: var(--lil-danger-text);
+}
+@media (max-width: 639px) {
+  .metric {
+    padding: 16px;
+  }
+  .value {
+    font-size: 28px;
+  }
+}

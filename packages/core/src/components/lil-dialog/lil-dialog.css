@@ -1,0 +1,11 @@
+@import '../../shared.css';
+:host { display:contents; }
+dialog { width:480px; max-width:calc(100vw - 48px); max-height:calc(100dvh - 48px); overflow:auto; border:1px solid var(--lil-border-default); border-radius:8px; padding:24px; background:var(--lil-surface-panel); color:var(--lil-text-primary); box-shadow:0 12px 32px #0002; }
+dialog::backdrop { background:#0007; }
+.header { display:flex; gap:16px; align-items:flex-start; justify-content:space-between; margin-bottom:16px; }
+h2 { margin:0; font-size:24px; line-height:32px; font-weight:600; }
+p { margin:0 0 24px; color:var(--lil-text-secondary); }
+.close { width:44px; height:44px; min-width:44px; display:flex; justify-content:center; align-items:center; background:transparent; border:0; border-radius:6px; color:var(--lil-text-secondary); margin-top:-6px; }
+.close:hover { background:var(--lil-surface-hover); }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+@media(max-width:639px) { .actions { flex-direction:column; } ::slotted(lil-button) { width:100%; } }

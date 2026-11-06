@@ -1,0 +1,5 @@
+@import '../../shared.css';
+:host { display:block; }
+button,a { display:flex; align-items:center; gap:12px; min-height:44px; width:100%; padding:12px; border:0; border-radius:var(--lil-radius-6); background:transparent; color:var(--lil-text-secondary); text-decoration:none; text-align:start; font-weight:500; line-height:20px; }
+button:hover,a:hover { background:var(--lil-surface-hover); }
+:host([selected]) button,:host([selected]) a { color:var(--lil-accent-text); background:var(--lil-accent-subtle); }

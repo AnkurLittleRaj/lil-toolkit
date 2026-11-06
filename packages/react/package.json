@@ -1,0 +1,45 @@
+{
+  "name": "@ankurlittleraj/lil-toolkit-react",
+  "version": "0.1.0",
+  "description": "react bindings for Little Design System by Ankur",
+  "license": "MIT",
+  "author": "Ankur Raj",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnkurLittleRaj/lil-toolkit.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://ankurlittleraj.github.io/lil-toolkit/",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ankurlittleraj/lil-toolkit": "0.1.0",
+    "@stencil/react-output-target": "1.7.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "node ../../scripts/check-package.mjs react"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  }
+}

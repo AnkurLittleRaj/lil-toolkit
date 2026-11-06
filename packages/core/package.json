@@ -1,0 +1,76 @@
+{
+  "name": "@ankurlittleraj/lil-toolkit",
+  "version": "0.1.0",
+  "description": "Little Design System by Ankur — framework-independent Stencil web components",
+  "license": "MIT",
+  "author": "Ankur Raj",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnkurLittleRaj/lil-toolkit.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://ankurlittleraj.github.io/lil-toolkit/",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./fonts.css": "./dist/fonts.css",
+    "./custom-elements.json": "./custom-elements.json",
+    "./package.json": "./package.json",
+    "./components/*.js": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./dist/components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./dist/components/*.js": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./register": {
+      "types": "./dist/register.d.ts",
+      "import": "./dist/register.js"
+    }
+  },
+  "files": [
+    "dist",
+    "loader",
+    "custom-elements.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/loader/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "stencil build",
+    "dev": "stencil build --dev --watch --serve",
+    "prepack": "node ../../scripts/check-package.mjs core"
+  }
+}

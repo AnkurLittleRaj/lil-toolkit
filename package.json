@@ -1,0 +1,64 @@
+{
+  "name": "lil-toolkit-workspace",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24.15.0 <25",
+    "npm": ">=11"
+  },
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "build": "npm run tokens && npm run build -w @ankurlittleraj/lil-toolkit && node scripts/finalize-bindings.mjs && npm run build -w @ankurlittleraj/lil-toolkit-react && npm run build -w @ankurlittleraj/lil-toolkit-vue && npm run build -w @ankurlittleraj/lil-toolkit-angular",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build -o storybook-static",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test",
+    "check": "npm run build && npm test && npm run build-storybook && npm run test:browser",
+    "pack": "node scripts/pack.mjs",
+    "release:check": "node scripts/release.mjs check",
+    "release:github": "node scripts/release.mjs github",
+    "release:npm": "node scripts/release.mjs npm"
+  },
+  "devDependencies": {
+    "@angular/common": "22.2.4",
+    "@angular/compiler": "22.2.4",
+    "@angular/compiler-cli": "22.2.4",
+    "@angular/core": "22.2.4",
+    "@angular/forms": "22.2.4",
+    "@angular/platform-browser": "22.2.4",
+    "@axe-core/playwright": "4.14.0",
+    "@fontsource/inter": "5.3.0",
+    "@playwright/test": "1.65.0",
+    "@stencil/angular-output-target": "1.5.3",
+    "@stencil/core": "4.45.2",
+    "@stencil/react-output-target": "1.7.0",
+    "@stencil/vue-output-target": "0.14.7",
+    "@storybook/addon-a11y": "10.6.6",
+    "@storybook/addon-docs": "10.6.6",
+    "@storybook/web-components-vite": "10.6.6",
+    "@types/node": "^24.0.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "lit": "3.3.3",
+    "ng-packagr": "22.2.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "rxjs": "7.8.2",
+    "storybook": "10.6.6",
+    "tslib": "^2.8.1",
+    "typescript": "~6.0.0",
+    "vite": "8.3.6",
+    "vue": "3.5.45",
+    "vue-router": "^4.5.0",
+    "zone.js": "~0.16.0"
+  },
+  "overrides": {
+    "@ts-morph/common": {
+      "minimatch": "11.0.1"
+    }
+  }
+}

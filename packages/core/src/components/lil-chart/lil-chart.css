@@ -1,0 +1,16 @@
+@import '../../shared.css';
+:host { display:block; min-width:0; }
+.plot { display:flex; align-items:flex-end; gap:24px; padding-top:8px; }
+.column { flex:1; min-width:0; text-align:center; }
+.well { height:160px; display:flex; align-items:flex-end; justify-content:center; }
+.bar { width:65%; max-width:80px; background:var(--lil-chart-secondary); border-radius:4px 4px 0 0; min-height:0; }
+.bar.accent { background:var(--lil-chart-primary); }
+.column span,p { color:var(--lil-text-secondary); font-size:12px; line-height:18px; }
+.column span { display:block; padding-top:8px; }
+p { margin:20px 0 0; }
+details { margin-top:16px; color:var(--lil-text-secondary); font-size:12px; }
+summary { cursor:pointer; min-height:44px; display:flex; align-items:center; text-decoration:underline; }
+table { width:100%; border-collapse:collapse; }
+th,td { text-align:start; padding:8px; border-bottom:1px solid var(--lil-border-default); }
+caption { text-align:start; padding:8px; }
+@media(max-width:639px) { .plot { gap:8px; } }

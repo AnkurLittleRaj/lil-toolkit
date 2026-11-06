@@ -1,0 +1,7 @@
+@import '../../shared.css';
+:host { display:block; }
+ul { list-style:none; padding:0; margin:0; display:grid; gap:16px; }
+.labels { display:flex; justify-content:space-between; gap:16px; margin-bottom:8px; color:var(--lil-text-secondary); }
+strong { font-weight:500; color:var(--lil-text-primary); }
+.rail { height:6px; border-radius:4px; background:var(--lil-surface-subtle); overflow:hidden; }
+.bar { height:100%; border-radius:4px; background:var(--lil-chart-primary); }

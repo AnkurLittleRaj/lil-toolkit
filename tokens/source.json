@@ -1,0 +1,210 @@
+{
+  "provenance": {
+    "figma": "https://www.figma.com/design/mjE6UWIjTk1zkJ0F0uonGD",
+    "author": "Ankur Raj",
+    "source": "Original Figma build definitions; fresh reads rate-limited on 2026-11-06"
+  },
+  "palette": {
+    "neutral/0": "FFFFFF",
+    "neutral/25": "FAFAFC",
+    "neutral/50": "F4F4F8",
+    "neutral/100": "E9E9F0",
+    "neutral/200": "D7D7E2",
+    "neutral/400": "9292A5",
+    "neutral/500": "6B6B80",
+    "neutral/600": "545468",
+    "neutral/700": "3A3A4C",
+    "neutral/800": "272736",
+    "neutral/850": "20202C",
+    "neutral/900": "181822",
+    "neutral/950": "111119",
+    "violet/50": "F1EFFF",
+    "violet/100": "E5DFFF",
+    "violet/300": "B9AAFF",
+    "violet/400": "A28BFA",
+    "violet/500": "8061EC",
+    "violet/600": "6941D9",
+    "violet/700": "5830BE",
+    "violet/800": "45249B",
+    "violet/950": "2B2048",
+    "green/50": "EAF7F0",
+    "green/300": "7DD9AE",
+    "green/700": "18794E",
+    "green/950": "143529",
+    "red/50": "FFF0F0",
+    "red/300": "FFA5A5",
+    "red/700": "BA3037",
+    "red/950": "401F27",
+    "amber/50": "FFF6E6",
+    "amber/300": "F3CC78",
+    "amber/700": "945E0E",
+    "amber/950": "3B2E1C"
+  },
+  "semantic": {
+    "surface/canvas": [
+      "neutral/25",
+      "neutral/950"
+    ],
+    "surface/panel": [
+      "neutral/0",
+      "neutral/900"
+    ],
+    "surface/subtle": [
+      "neutral/50",
+      "neutral/850"
+    ],
+    "surface/hover": [
+      "neutral/100",
+      "neutral/800"
+    ],
+    "text/primary": [
+      "neutral/900",
+      "neutral/50"
+    ],
+    "text/secondary": [
+      "neutral/600",
+      "neutral/200"
+    ],
+    "text/muted": [
+      "neutral/500",
+      "neutral/400"
+    ],
+    "text/on-accent": [
+      "neutral/0",
+      "neutral/0"
+    ],
+    "border/default": [
+      "neutral/200",
+      "neutral/700"
+    ],
+    "border/strong": [
+      "neutral/500",
+      "neutral/400"
+    ],
+    "accent/solid": [
+      "violet/600",
+      "violet/600"
+    ],
+    "accent/hover": [
+      "violet/700",
+      "violet/700"
+    ],
+    "accent/pressed": [
+      "violet/800",
+      "violet/800"
+    ],
+    "accent/subtle": [
+      "violet/50",
+      "violet/950"
+    ],
+    "accent/text": [
+      "violet/700",
+      "violet/300"
+    ],
+    "accent/focus": [
+      "violet/500",
+      "violet/400"
+    ],
+    "success/surface": [
+      "green/50",
+      "green/950"
+    ],
+    "success/text": [
+      "green/700",
+      "green/300"
+    ],
+    "danger/surface": [
+      "red/50",
+      "red/950"
+    ],
+    "danger/text": [
+      "red/700",
+      "red/300"
+    ],
+    "warning/surface": [
+      "amber/50",
+      "amber/950"
+    ],
+    "warning/text": [
+      "amber/700",
+      "amber/300"
+    ],
+    "chart/primary": [
+      "violet/600",
+      "violet/400"
+    ],
+    "chart/secondary": [
+      "neutral/200",
+      "neutral/700"
+    ]
+  },
+  "spacing": [
+    0,
+    2,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+    48,
+    64,
+    80
+  ],
+  "radius": [
+    4,
+    6,
+    8,
+    12,
+    999
+  ],
+  "typography": {
+    "display": {
+      "size": 56,
+      "line": 64,
+      "weight": 600
+    },
+    "h1": {
+      "size": 32,
+      "line": 40,
+      "weight": 600
+    },
+    "h2": {
+      "size": 24,
+      "line": 32,
+      "weight": 600
+    },
+    "h3": {
+      "size": 18,
+      "line": 28,
+      "weight": 600
+    },
+    "body": {
+      "size": 14,
+      "line": 22,
+      "weight": 400
+    },
+    "large": {
+      "size": 16,
+      "line": 24,
+      "weight": 400
+    },
+    "label": {
+      "size": 14,
+      "line": 20,
+      "weight": 500
+    },
+    "caption": {
+      "size": 12,
+      "line": 18,
+      "weight": 400
+    },
+    "metric": {
+      "size": 30,
+      "line": 38,
+      "weight": 600
+    }
+  }
+}

@@ -10,7 +10,7 @@ if (mode !== "check" && tag !== `v${version}`)
   throw Error(`Release tag ${tag} must equal v${version}`);
 const packages = ["core", "react", "vue", "angular"];
 for (const folder of packages) {
-  const path = `packages/${folder}${folder === "angular" ? "/dist" : ""}`;
+  const path = `./packages/${folder}${folder === "angular" ? "/dist" : ""}`;
   const pkg = JSON.parse(await fs.readFile(`${path}/package.json`, "utf8"));
   if (pkg.version !== version) throw Error(`${pkg.name}: version mismatch`);
   if (pkg.private) throw Error(`${pkg.name} is private`);

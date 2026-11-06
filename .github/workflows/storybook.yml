@@ -21,7 +21,7 @@ jobs:
       - run: npm run build
       - run: npm test
       - run: npm run build-storybook
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps --only-shell chromium
       - run: npm run test:browser
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

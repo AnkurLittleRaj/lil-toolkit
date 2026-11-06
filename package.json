@@ -2,7 +2,7 @@
   "name": "lil-toolkit-workspace",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "workspaces": [
     "packages/*"
   ],
@@ -14,7 +14,7 @@
     "tokens": "node scripts/build-tokens.mjs",
     "build": "npm run tokens && npm run build -w @ankurlittleraj/lil-toolkit && node scripts/finalize-bindings.mjs && npm run build -w @ankurlittleraj/lil-toolkit-react && npm run build -w @ankurlittleraj/lil-toolkit-vue && npm run build -w @ankurlittleraj/lil-toolkit-angular && node scripts/finalize-angular.mjs",
     "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build -o storybook-static",
+    "build-storybook": "storybook build -o storybook-static && node scripts/check-storybook.mjs",
     "test": "node --test tests/*.test.mjs",
     "test:browser": "playwright test",
     "check": "npm run build && npm test && npm run build-storybook && npm run test:browser",

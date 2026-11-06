@@ -8,7 +8,12 @@ for (const framework of ["core", "react", "vue", "angular"])
       import.meta.url,
     );
     const pkg = JSON.parse(await fs.readFile(new URL("package.json", dir)));
-    assert.equal(pkg.version, "0.1.0");
+    assert.equal(
+      pkg.version,
+      JSON.parse(
+        await fs.readFile(new URL("../package.json", import.meta.url), "utf8"),
+      ).version,
+    );
     assert.equal(pkg.license, "MIT");
     assert.ok(!pkg.private);
     assert.ok(pkg.name.startsWith("@ankurlittleraj/lil-toolkit"));

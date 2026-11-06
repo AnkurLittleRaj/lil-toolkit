@@ -1,6 +1,6 @@
 {
   "name": "@ankurlittleraj/lil-toolkit-angular",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "angular bindings for Little Design System by Ankur",
   "license": "MIT",
   "author": "Ankur Raj",
@@ -22,7 +22,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "@ankurlittleraj/lil-toolkit": "0.1.0",
+    "@ankurlittleraj/lil-toolkit": "0.1.1",
     "tslib": "^2.8.1"
   },
   "peerDependencies": {

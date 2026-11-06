@@ -18,7 +18,7 @@ jobs:
       - run: npm run build
       - run: npm test
       - run: npm run build-storybook
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps --only-shell chromium
       - run: npm run test:browser
       - run: npm run release:check
       - run: npm run pack

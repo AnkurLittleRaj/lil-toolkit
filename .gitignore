@@ -6,6 +6,8 @@ storybook-static/
 test-results/
 playwright-report/
 artifacts/
+.ask-little/
+assistant/generated/
 .stencil/
 packages/react/src/generated/
 packages/angular/src/generated/

@@ -1,0 +1,51 @@
+name: Ask Little knowledge
+on:
+  workflow_dispatch:
+    inputs:
+      sync_to_openai:
+        description: "Upload public documentation to your configured OpenAI project (incurs API/storage usage)"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "assistant/**"
+      - "docs/**"
+      - "stories/**"
+      - "tokens/**"
+      - "packages/core/**"
+      - "README.md"
+      - "package*.json"
+      - ".github/workflows/assistant.yml"
+permissions:
+  contents: read
+concurrency:
+  group: ask-little-knowledge
+  cancel-in-progress: false
+jobs:
+  knowledge:
+    runs-on: ubuntu-latest
+    env:
+      HAS_OPENAI_KEY: ${{ secrets.ASK_LITTLE_OPENAI_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run assistant:knowledge
+      # No API calls until the owner adds a secret. Manual runs also require opt-in.
+      - run: npm run assistant:sync
+        if: env.HAS_OPENAI_KEY == 'true' && (github.event_name == 'push' || inputs.sync_to_openai)
+        env:
+          OPENAI_API_KEY: ${{ secrets.ASK_LITTLE_OPENAI_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ask-little-knowledge
+          path: |
+            assistant/generated/knowledge.json
+            .ask-little/index.json
+          include-hidden-files: true
+          retention-days: 14

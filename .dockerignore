@@ -1,0 +1,12 @@
+node_modules
+.git
+.env
+.env.*
+.ask-little
+artifacts
+storybook-static
+test-results
+playwright-report
+**/dist
+**/generated
+**/.stencil

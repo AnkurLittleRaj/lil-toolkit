@@ -1,5 +1,10 @@
 const base = "https://api.openai.com/v1";
-export class ProviderError extends Error {}
+export class ProviderError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.status = status;
+  }
+}
 export async function openaiRequest(
   apiKey,
   route,
@@ -21,7 +26,10 @@ export async function openaiRequest(
   });
   // Never forward upstream bodies, credentials, request prompts or stack traces.
   if (!response.ok)
-    throw new ProviderError(`OpenAI request failed (${response.status}).`);
+    throw new ProviderError(
+      `OpenAI request failed (${response.status}).`,
+      response.status,
+    );
   return response.json();
 }
 
@@ -50,6 +58,17 @@ export async function answerQuestion({
         filters: [
           { type: "eq", key: "version", value: knowledge.version },
           { type: "eq", key: "revision", value: knowledge.revision },
+          ...(framework === "all"
+            ? []
+            : [
+                {
+                  type: "or",
+                  filters: [
+                    { type: "eq", key: "framework", value: "all" },
+                    { type: "eq", key: "framework", value: framework },
+                  ],
+                },
+              ]),
         ],
       },
     },

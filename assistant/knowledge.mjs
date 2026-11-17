@@ -13,6 +13,9 @@ export async function buildKnowledge() {
     await fs.readFile(path.join(root, "package.json"), "utf8"),
   );
   const version = pkg.version;
+  const sourceRef = process.env.GITHUB_SHA || "main";
+  if (!/^(main|[a-f0-9]{40})$/.test(sourceRef))
+    throw Error("GITHUB_SHA must identify a source commit.");
   const documents = [];
   function add(id, title, text, sourcePath, story, framework = "all") {
     documents.push({
@@ -21,7 +24,7 @@ export async function buildKnowledge() {
       text: text.trim(),
       version,
       framework,
-      url: `${repo}/blob/main/${sourcePath}`,
+      url: `${repo}/blob/${sourceRef}/${sourcePath}`,
       ...(story
         ? { storybookUrl: `${storybook}?path=/docs/${story}--documentation` }
         : {}),
@@ -53,6 +56,12 @@ export async function buildKnowledge() {
           title,
           text,
           sourcePath,
+          undefined,
+          /^(React|Angular|Vue)$/.test(title)
+            ? title.toLowerCase()
+            : title === "Plain JavaScript"
+              ? "javascript"
+              : "all",
         );
       }
     }
@@ -122,7 +131,7 @@ export async function buildKnowledge() {
   return {
     version,
     revision: createHash("sha256")
-      .update(JSON.stringify(documents))
+      .update(JSON.stringify(documents.map(({ url, ...document }) => document)))
       .digest("hex"),
     documents,
   };

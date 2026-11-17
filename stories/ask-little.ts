@@ -26,6 +26,7 @@ const configuredUrl = (import.meta as any).env.VITE_ASK_LITTLE_API_URL || "";
 /** Documentation UI only. No model credentials are accepted or stored here. */
 export class AskLittle extends LitElement {
   static properties = {
+    apiUrl: { attribute: "api-url" },
     question: { state: true },
     framework: { state: true },
     busy: { state: true },
@@ -36,23 +37,38 @@ export class AskLittle extends LitElement {
     connection: { state: true },
     copied: { state: true },
   };
-  question = "";
-  framework = "all";
-  busy = false;
-  result: Result | null = null;
-  error = "";
-  aiReady = false;
-  mode = "search";
-  copied = false;
-  connection = configuredUrl
-    ? "Checking AI connection…"
-    : "AI answers aren’t connected yet. Documentation search works here for free.";
+  declare apiUrl: string;
+  declare question: string;
+  declare framework: string;
+  declare busy: boolean;
+  declare result: Result | null;
+  declare error: string;
+  declare aiReady: boolean;
+  declare mode: string;
+  declare copied: boolean;
+  declare connection: string;
   private pending?: AbortController;
   private health?: AbortController;
 
-  connectedCallback() {
-    super.connectedCallback();
-    if (configuredUrl) void this.checkConnection();
+  constructor() {
+    super();
+    this.apiUrl = configuredUrl;
+    this.question = "";
+    this.framework = "all";
+    this.busy = false;
+    this.result = null;
+    this.error = "";
+    this.aiReady = false;
+    this.mode = "search";
+    this.copied = false;
+    this.connection =
+      "AI answers aren’t connected yet. Documentation search works here for free.";
+  }
+  updated(changes: Map<string, unknown>) {
+    if (changes.has("apiUrl") && this.apiUrl) {
+      this.connection = "Checking AI connection…";
+      void this.checkConnection();
+    }
   }
   disconnectedCallback() {
     this.pending?.abort();
@@ -60,7 +76,7 @@ export class AskLittle extends LitElement {
     super.disconnectedCallback();
   }
   private baseUrl() {
-    const url = new URL(configuredUrl);
+    const url = new URL(this.apiUrl);
     if (
       url.protocol !== "https:" &&
       !(
@@ -184,7 +200,7 @@ export class AskLittle extends LitElement {
       );
   }
   render() {
-    return html`<section aria-labelledby="ask-title">
+    return html`<main aria-labelledby="ask-title">
       <header>
         <div class="brand">LITTLE DESIGN SYSTEM <span>By Ankur</span></div>
         <h1 id="ask-title">
@@ -318,7 +334,7 @@ export class AskLittle extends LitElement {
                           >${source.title}</a
                         >
                       </h3>
-                      ${source.storybookUrl ? html`<a class="story-link" href=${source.storybookUrl} target="_blank" rel="noopener noreferrer">Open in Storybook ↗</a>` : ""}${this.result!.mode === "search" ? html`<pre class="excerpt">${source.text?.slice(0, 1100)}${(source.text?.length || 0) > 1100 ? "…" : ""}</pre>` : ""}
+                      ${source.storybookUrl ? html`<a class="story-link" href=${source.storybookUrl} target="_blank" rel="noopener noreferrer">Open in Storybook ↗</a>` : ""}${this.result!.mode === "search" ? html`<pre class="excerpt" tabindex="0" aria-label="Source excerpt">${source.text?.slice(0, 1100)}${(source.text?.length || 0) > 1100 ? "…" : ""}</pre>` : ""}
                     </div>`,
                 )}
               </div>
@@ -342,7 +358,7 @@ export class AskLittle extends LitElement {
           >Source code ↗</a
         >
       </footer>
-    </section>`;
+    </main>`;
   }
   static styles = css`
     :host {
@@ -355,7 +371,7 @@ export class AskLittle extends LitElement {
     * {
       box-sizing: border-box;
     }
-    section {
+    main {
       max-width: 900px;
       margin: 0 auto;
       padding: 48px 32px;
@@ -580,7 +596,7 @@ export class AskLittle extends LitElement {
       font-size: 12px;
     }
     @media (max-width: 600px) {
-      section {
+      main {
         padding: 28px 8px;
       }
       h1 {

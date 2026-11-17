@@ -45,3 +45,12 @@ Remaining: verify remote CI and Pages, publish version 0.1.0 to registries, fini
 - Public zeroheight guide verified at https://zeroheight.com/75c403f45 with live Storybook embeds and GitHub-only installation guidance.
 - Imported all 109 tokens into one zeroheight token set. Generated a second-editor-draft compatibility file at tokens/zeroheight.json, while retaining structured dimensions for code.
 - Storybook accessibility panel runs on demand; Playwright owns automated axe checks to avoid overlapping scans.
+
+## Ask Little — 17 November 2026
+
+- Added a documentation assistant screen to Storybook with suggested questions, framework selection, safe code rendering, source links, and light/dark responsive layouts.
+- Free browser-side documentation search works immediately and is explicitly distinguished from AI answers.
+- Prepared a separate Node backend for OpenAI vector retrieval and Responses structured outputs. Answers require matching toolkit version/content revision and valid retrieved citations.
+- Added public-corpus generation, an opt-in managed indexing workflow, a portable Dockerfile, server-only environment template and deployment documentation in docs/ask-little.md.
+- Owner confirmed there is no OpenAI project or backend host yet: prepare for setup only. No OpenAI resources, paid hosting or live AI service have been provisioned. No new component package release is required.
+- Initial backend checks and 39 browser tests pass, including mocked AI states, safe text rendering, existing components and mobile axe checks. Live OpenAI ingestion/generation and Docker runtime verification remain for future account/hosting setup.

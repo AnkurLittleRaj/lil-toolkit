@@ -4,8 +4,82 @@ import { buildKnowledge } from "../assistant/knowledge.mjs";
 import { searchKnowledge } from "../assistant/search.mjs";
 import { answerQuestion } from "../assistant/openai.mjs";
 import { createAssistantServer } from "../assistant/server.mjs";
+import { syncKnowledge } from "../assistant/sync.mjs";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
 
 const knowledge = await buildKnowledge();
+test("index sync is idempotent, recovers expired stores and preserves active manifest on failure", async () => {
+  const temp = await fs.mkdtemp(path.join(os.tmpdir(), "ask-little-test-"));
+  const small = { ...knowledge, documents: knowledge.documents.slice(0, 1) };
+  const indexPath = path.join(temp, "index.json"),
+    pendingPath = path.join(temp, "pending.json");
+  let uploads = 0,
+    expired = false,
+    fail = false;
+  const fetchImpl = async (url, init) => {
+    if (url.endsWith("/files") && init.body instanceof FormData) {
+      uploads++;
+      assert.equal(init.body.get("purpose"), "assistants");
+      return Response.json({ id: `file_${uploads}` });
+    }
+    if (url.endsWith("/files")) {
+      const body = JSON.parse(init.body);
+      assert.equal(body.attributes.version, knowledge.version);
+      if (fail) return new Response("failed", { status: 500 });
+      return Response.json({ status: "in_progress" });
+    }
+    if (init.method === "GET")
+      return Response.json({
+        status: expired ? "expired" : "completed",
+        file_counts: { completed: 1 },
+      });
+    expired = false;
+    return Response.json({ id: "vs_mock" });
+  };
+  try {
+    await syncKnowledge({
+      knowledge: small,
+      apiKey: "test",
+      indexPath,
+      pendingPath,
+      fetchImpl,
+    });
+    await syncKnowledge({
+      knowledge: small,
+      apiKey: "test",
+      indexPath,
+      pendingPath,
+      fetchImpl,
+    });
+    assert.equal(uploads, 1);
+    expired = true;
+    await syncKnowledge({
+      knowledge: small,
+      apiKey: "test",
+      indexPath,
+      pendingPath,
+      fetchImpl,
+    });
+    assert.equal(uploads, 2);
+    const before = await fs.readFile(indexPath, "utf8");
+    fail = true;
+    await assert.rejects(
+      syncKnowledge({
+        knowledge: { ...small, revision: "new" },
+        apiKey: "test",
+        indexPath,
+        pendingPath,
+        fetchImpl,
+      }),
+    );
+    assert.equal(await fs.readFile(indexPath, "utf8"), before);
+    assert.ok(JSON.parse(await fs.readFile(pendingPath, "utf8")).files.file_3);
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
+});
 const source = knowledge.documents.find((d) => d.id === "lil-input");
 const index = {
   version: knowledge.version,
@@ -83,7 +157,7 @@ test("knowledge covers every component, tokens, framework examples and safe publ
     assert.equal(doc.version, knowledge.version);
     assert.match(
       doc.url,
-      /^https:\/\/github.com\/AnkurLittleRaj\/lil-toolkit\/blob\/main\//,
+      /^https:\/\/github.com\/AnkurLittleRaj\/lil-toolkit\/blob\/(main|[a-f0-9]{40})\//,
     );
     assert.ok(!doc.url.includes(".env"));
   }

@@ -17,6 +17,10 @@ A reusable design system for responsive web applications. Built once with Stenci
 
 All four packages are published at **0.1.1** on GitHub Packages, with public visibility verified. See [the successful release workflow](https://github.com/AnkurLittleRaj/lil-toolkit/actions/runs/42259714705).
 
+## Ask Little
+
+[Ask Little](https://ankurlittleraj.github.io/lil-toolkit/?path=/story/ask-little-assistant--ask-little) searches component documentation, examples and design tokens. Free documentation search works immediately. Source-linked AI answers have a separate, setup-ready Node backend; they remain disconnected until an OpenAI project and host are configured. See [setup and architecture](docs/ask-little.md).
+
 ## Development
 
 Use Node.js 24 (at least 24.15) and npm 11 or newer.

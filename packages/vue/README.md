@@ -4,7 +4,7 @@
 
 A reusable design system for responsive web applications. Built once with Stencil, delivered as native Web Components and generated Angular, React and Vue libraries.
 
-[Figma](https://www.figma.com/design/mjE6UWIjTk1zkJ0F0uonGD) · [Storybook](https://ankurlittleraj.github.io/lil-toolkit/) · [Release setup](docs/releasing.md)
+[Figma](https://www.figma.com/design/mjE6UWIjTk1zkJ0F0uonGD) · [Storybook](https://ankurlittleraj.github.io/lil-toolkit/) · [Usage guide](https://zeroheight.com/75c403f45) · [Release setup](docs/releasing.md)
 
 ## Packages
 
@@ -15,7 +15,11 @@ A reusable design system for responsive web applications. Built once with Stenci
 | `@ankurlittleraj/lil-toolkit-angular` | Standalone Angular components and form value accessors                 |
 | `@ankurlittleraj/lil-toolkit-vue`     | Generated Vue bindings with `v-model` support                          |
 
-See the registry and deployment status in GitHub Actions. Package names in this README describe the intended public distribution; do not infer that a release exists until its publish workflow has passed.
+All four packages are published at **0.1.1** on GitHub Packages, with public visibility verified. See [the successful release workflow](https://github.com/AnkurLittleRaj/lil-toolkit/actions/runs/42259714705).
+
+## Ask Little
+
+[Ask Little](https://ankurlittleraj.github.io/lil-toolkit/?path=/story/ask-little-assistant--ask-little) searches component documentation, examples and design tokens. Free documentation search works immediately. Source-linked AI answers have a separate, setup-ready Node backend; they remain disconnected until an OpenAI project and host are configured. See [setup and architecture](docs/ask-little.md).
 
 ## Development
 
@@ -159,6 +163,6 @@ Keyboard support, native form participation, dialog focus containment, reduced m
 - GitHub workflow artifacts include all four `.tgz` packages.
 - [Zeroheight setup](docs/zeroheight/README.md) uses its Free plan, one styleguide and one token set.
 
-GitHub Packages initially publishes packages privately even for public source repositories. Change each package visibility to Public after its first publish. Installing from GitHub Packages requires authentication even for public packages. No npmjs.org publishing job or credential is used.
+All four GitHub packages are public. Verify package visibility after creating any future package. Installing from GitHub Packages requires authentication even for public packages. No npmjs.org publishing job or credential is used.
 
 MIT · Copyright 2026 Ankur Raj.
